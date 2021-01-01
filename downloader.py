@@ -45,7 +45,7 @@ class NinaProDownloader(object):
         session = requests.session()
         print("Establishing a session....")
         try:
-            resp = session.get(NinawebDownloader.NINA_URL)
+            resp = session.get(NinaProDownloader.NINA_URL)
             soup = BeautifulSoup(resp.text, 'html.parser')
             form = soup.find_all("form")
             # if there are more than a form look for the login form
@@ -75,7 +75,7 @@ class NinaProDownloader(object):
             data[pass_var] = password
 
             # submit the form
-            url = urljoin(NinawebDownloader.NINA_URL, form.attrs.get("action"))
+            url = urljoin(NinaProDownloader.NINA_URL, form.attrs.get("action"))
             if form.attrs.get("method").lower() == "post":
                 resp = session.post(url, data=data)
             else: 
